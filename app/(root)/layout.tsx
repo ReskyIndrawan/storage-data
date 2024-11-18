@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import MobileNavigation from "@/components/MobileNavigation";
 import Sidebar from "@/components/Sidebar";
 import { getCurrentUser } from "@/lib/actions/user.actions";
+import { Toaster } from "@/components/ui/toaster";
 
 const Layout = async ({
   children,
@@ -19,9 +20,13 @@ const Layout = async ({
       <Sidebar {...currentUser} />
       <section className='flex h-full flex-1 flex-col'>
         <MobileNavigation {...currentUser} />
-        <Header />
+        <Header
+          userId={currentUser.$id}
+          accountId={currentUser.accountId}
+        />
         <div className='main-content'>{children}</div>
       </section>
+      <Toaster />
     </main>
   );
 };
